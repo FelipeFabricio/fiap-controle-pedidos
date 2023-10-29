@@ -17,4 +17,24 @@ public class ClienteService : IClienteService
     {
         return _clienteRepository.ObtemTodosClientes();
     }
+    
+    public Cliente ObtemClientePorId(Guid id)
+    {
+        return _clienteRepository.ObtemClientePorId(id);
+    }
+    
+    public void AdicionaCliente(Cliente cliente)
+    {
+        _clienteRepository.AdicionaCliente(cliente);
+    }
+    
+    public void AtualizaCliente(Cliente cliente)
+    {
+        _clienteRepository.AtualizaCliente(cliente);
+    }
+    
+    public void RemoveCliente(Guid id)
+    {
+        _clienteRepository.RemoveCliente(id);
+    }
 }

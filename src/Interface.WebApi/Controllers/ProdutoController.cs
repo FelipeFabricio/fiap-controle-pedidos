@@ -1,6 +1,68 @@
-﻿namespace Interface.WebApi.Controllers;
+﻿using Application.Dtos;
+using AutoMapper;
+using Core.Entities;
+using Core.Interfaces.Application.Services;
+using Microsoft.AspNetCore.Mvc;
 
-public class ProdutoController
+namespace Interface.WebApi.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class ProdutoController : ControllerBase
 {
-    
+    private readonly IProdutoService _produtoService;
+    private readonly IMapper _mapper;
+
+    public ProdutoController(IProdutoService produtoService, IMapper mapper)
+    {
+        _produtoService = produtoService;
+        _mapper = mapper;
+    }
+
+    [HttpGet()]
+    public ActionResult<IEnumerable<ProdutoDto>> GetProdutos()
+    {
+        var produtos = _produtoService.ObtemTodosProdutos();
+        if (!produtos.Any()) 
+            return NotFound();
+        
+        return Ok(produtos);
+    }
+
+    [HttpGet("{id:guid}")]
+    public ActionResult<ProdutoDto> GetProduto(Guid id)
+    {
+        var produto = _produtoService.ObtemProdutoPorId(id);
+        if (produto is null)
+            return NotFound();
+        
+        return Ok(produto);
+    }
+
+    [HttpPost]
+    public ActionResult<ProdutoDto> CreateProduto([FromBody]ProdutoDto produto)
+    {
+        var produtoDomain = _mapper.Map<Produto>(produto);
+        _produtoService.AdicionaProduto(produtoDomain);
+        return CreatedAtAction(nameof(GetProduto), new { id = produto.Id }, produto);
+    }
+
+    [HttpPut("{id:Guid}")]
+    public IActionResult UpdateProduto(Guid id, ProdutoDto produto)
+    {
+        if (id != produto.Id)
+            return BadRequest();
+        
+        var produtoDomain = _mapper.Map<Produto>(produto);
+        _produtoService.AtualizaProduto(produtoDomain);
+        
+        return NoContent();
+    }
+
+    [HttpDelete("{id:Guid}")]
+    public IActionResult DeleteProduto(Guid id)
+    {
+        _produtoService.RemoveProduto(id);
+        return NoContent();
+    }
 }

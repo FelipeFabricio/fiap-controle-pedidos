@@ -1,32 +1,68 @@
 ﻿using Application.Dtos;
-using Microsoft.AspNetCore.Http.HttpResults;
+using AutoMapper;
+using Core.Entities;
+using Core.Interfaces.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Interface.WebApi.Controllers;
 
-public class ClienteController
+[Route("api/[controller]")]
+[ApiController]
+public class ClienteController : ControllerBase
 {
-    [HttpGet]
-    public IEnumerable<ClienteDto> Get()
+    private readonly IClienteService _clienteService;
+    private readonly IMapper _mapper;
+
+    public ClienteController(IClienteService clienteService, IMapper mapper)
     {
-        IEnumerable<ClienteDto> listaClientes = new ClienteDto[]
-        {
-            new ClienteDto
-            {
-                Id = Guid.NewGuid(),
-                Nome = "João",
-                CPF = "12345678900",
-                Email = "email@gmail.com",
-            },
-            new ClienteDto
-            {
-                Id = Guid.NewGuid(),
-                Nome = "Maria",
-                CPF = "12345678900",
-                Email = "email@gmail.com",
-            }
-        };
+        _clienteService = clienteService;
+        _mapper = mapper;
+    }
+
+    [HttpGet]
+    public ActionResult<IEnumerable<ClienteDto>> GetClientes()
+    {
+        var clientes = _clienteService.ObtemTodosClientes();
+        if (!clientes.Any()) 
+            return NotFound();
         
-        return listaClientes;
+        return Ok(clientes);
+    }
+
+    [HttpGet("{id:guid}")]
+    public ActionResult<ClienteDto> GetCliente(Guid id)
+    {
+        var cliente = _clienteService.ObtemClientePorId(id);
+        if (cliente is null)
+            return NotFound();
+        
+        return Ok(cliente);
+    }
+
+    [HttpPost]
+    public ActionResult<ClienteDto> CreateCliente([FromBody]ClienteDto cliente)
+    {
+        var clienteDomain = _mapper.Map<Cliente>(cliente);
+        _clienteService.AdicionaCliente(clienteDomain);
+        return CreatedAtAction(nameof(GetCliente), new { id = cliente.Id }, cliente);
+    }
+
+    [HttpPut("{id:Guid}")]
+    public IActionResult UpdateCliente(Guid id, ClienteDto cliente)
+    {
+        if (id != cliente.Id)
+            return BadRequest();
+        
+        var clienteDomain = _mapper.Map<Cliente>(cliente);
+        _clienteService.AtualizaCliente(clienteDomain);
+        
+        return NoContent();
+    }
+
+    [HttpDelete("{id:Guid}")]
+    public IActionResult DeleteCliente(Guid id)
+    {
+        _clienteService.RemoveCliente(id);
+        return NoContent();
     }
 }

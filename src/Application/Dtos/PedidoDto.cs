@@ -8,7 +8,6 @@ public sealed record  PedidoDto
     public Guid ClienteId { get; set; }
     public DateTime DataPedido { get; set; }
     public decimal Valor { get; set; }
-    public StatusPedidoDto Status { get; set; }
-    public ClienteDto ClienteDto { get; set; }
+    public string Status { get; set; }
     public IEnumerable<ItemPedidoDto> ItensPedido { get; set; }
 }

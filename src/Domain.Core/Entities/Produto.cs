@@ -1,4 +1,6 @@
-﻿namespace Core.Entities;
+﻿ using Core.Enums;
+
+namespace Core.Entities;
 
 public sealed record  Produto
 {

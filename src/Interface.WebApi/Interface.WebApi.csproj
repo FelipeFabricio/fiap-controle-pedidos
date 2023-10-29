@@ -8,7 +8,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="12.0.1" />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.10"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.13">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="MySql.EntityFrameworkCore" Version="7.0.10" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
     </ItemGroup>
 
@@ -21,6 +28,11 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Application\Application.csproj" />
+      <ProjectReference Include="..\Infra.Database.MySql\Infra.Database.MySql.csproj" />
     </ItemGroup>
+
+
+
+
 
 </Project>

@@ -14,7 +14,6 @@ public class ProdutoMapping : IEntityTypeConfiguration<Produto>
         builder.Property(p => p.Preco).HasPrecision(10, 2).IsRequired();
         builder.Property(p => p.Descricao).HasMaxLength(500).IsRequired();
         builder.Property(p => p.ImagemUrl).HasMaxLength(2000).IsRequired();
-        
-        //TODO: Precisamos realmente ter uma tabela só paras as categorias? Não poderia ser um enum?
+        builder.Property(p => p.Categoria).IsRequired();
     }
 }
