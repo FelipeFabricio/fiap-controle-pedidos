@@ -15,9 +15,5 @@ public class ClienteMapping : IEntityTypeConfiguration<Cliente>
         builder.Property(p => p.Nome).HasMaxLength(100);
         builder.Property(p => p.CPF).HasMaxLength(11);
         builder.Property(p => p.Email).HasMaxLength(100);
-        
-        builder.HasMany(p => p.Pedidos)
-            .WithOne(p => p.Cliente)
-            .HasForeignKey(p => p.ClienteId);
     }
 }

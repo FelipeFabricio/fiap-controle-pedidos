@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Core.Entities;
+using Core.Enums;
 using Core.Interfaces.Infra.Database;
 using Infra.Database.MySql.Context;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +24,7 @@ public class ProdutoRepository : IProdutoRepository
         return _mapper.Map<Produto>(produto);
     }
 
-    public Produto ObtemProdutoPorCategoria(short categoria)
+    public Produto ObtemProdutoPorCategoria(CategoriaProduto categoria)
     {
         var produto = _context.Produtos.FirstOrDefault(p => p.Categoria == categoria);
         return _mapper.Map<Produto>(produto);

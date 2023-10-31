@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.Enums;
 using Core.Interfaces.Application.Services;
 using Core.Interfaces.Infra.Database;
 
@@ -18,7 +19,7 @@ public class PedidoService : IPedidoService
         return _pedidoRepository.ObtemPedidos();
     }
 
-    public IEnumerable<Pedido> ObtemPedidosPorStatus(short statusPedido)
+    public IEnumerable<Pedido> ObtemPedidosPorStatus(StatusPedido statusPedido)
     {
         return _pedidoRepository.ObtemPedidosPorStatus(statusPedido);
     }

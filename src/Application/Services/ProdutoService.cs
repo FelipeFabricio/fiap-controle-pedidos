@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.Enums;
 using Core.Interfaces.Application.Services;
 using Core.Interfaces.Infra.Database;
 
@@ -18,7 +19,7 @@ public class ProdutoService : IProdutoService
         return _produtoRepository.ObtemProdutoPorId(id);
     }
 
-    public Produto ObtemProdutoPorCategoria(short categoria)
+    public Produto ObtemProdutoPorCategoria(CategoriaProduto categoria)
     {
         return _produtoRepository.ObtemProdutoPorCategoria(categoria);
     }

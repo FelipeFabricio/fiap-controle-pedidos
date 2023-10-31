@@ -1,6 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Core", "src\Domain.Core\Domain.Core.csproj", "{C5E61E8F-E126-471F-8A6E-9FCF9944FAD2}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Core", "src\Domain.Core\Domain.Core.csproj", "{C5E61E8F-E126-471F-8A6E-9FCF9944FAD2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{D140382E-B482-42D1-8580-E80032C309F2}"
 EndProject
@@ -10,11 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interface", "Interface", "{18BB89E3-F483-4981-87E5-5041408EB467}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Application\Application.csproj", "{14D0D9D0-964E-4D56-A1CA-0BE648F76731}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Application\Application.csproj", "{14D0D9D0-964E-4D56-A1CA-0BE648F76731}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.Database.MySql", "src\Infra.Database.MySql\Infra.Database.MySql.csproj", "{4FC43810-53B4-4299-90C8-B613E4B930D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.Database.MySql", "src\Infra.Database.MySql\Infra.Database.MySql.csproj", "{4FC43810-53B4-4299-90C8-B613E4B930D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface.WebApi", "src\Interface.WebApi\Interface.WebApi.csproj", "{97C331D1-124F-4D44-B89B-573ED41DF3A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interface.WebApi", "src\Interface.WebApi\Interface.WebApi.csproj", "{97C331D1-124F-4D44-B89B-573ED41DF3A5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{17525184-BDA9-439A-A764-07BEFB97F8AC}"
 	ProjectSection(SolutionItems) = preProject
@@ -44,10 +47,16 @@ Global
 		{97C331D1-124F-4D44-B89B-573ED41DF3A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97C331D1-124F-4D44-B89B-573ED41DF3A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C5E61E8F-E126-471F-8A6E-9FCF9944FAD2} = {D140382E-B482-42D1-8580-E80032C309F2}
 		{14D0D9D0-964E-4D56-A1CA-0BE648F76731} = {9A055A08-CE27-41A1-9894-E86E8ACCF165}
 		{4FC43810-53B4-4299-90C8-B613E4B930D4} = {CD005BD0-8BC0-4095-B72C-224AD0910EA3}
 		{97C331D1-124F-4D44-B89B-573ED41DF3A5} = {18BB89E3-F483-4981-87E5-5041408EB467}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {53231764-3019-4C18-8889-207FCD3391E7}
 	EndGlobalSection
 EndGlobal

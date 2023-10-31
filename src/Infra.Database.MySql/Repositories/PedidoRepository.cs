@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Core.Entities;
+using Core.Enums;
 using Core.Interfaces.Infra.Database;
 using Infra.Database.MySql.Context;
 
@@ -22,7 +23,7 @@ public class PedidoRepository : IPedidoRepository
         return _mapper.Map<IEnumerable<Pedido>>(pedidos);
     }
 
-    public IEnumerable<Pedido> ObtemPedidosPorStatus(short statusPedido)
+    public IEnumerable<Pedido> ObtemPedidosPorStatus(StatusPedido statusPedido)
     {
         var pedidos = _context.Pedidos.Where(p => p.Status == statusPedido).AsEnumerable();
         return _mapper.Map<IEnumerable<Pedido>>(pedidos);

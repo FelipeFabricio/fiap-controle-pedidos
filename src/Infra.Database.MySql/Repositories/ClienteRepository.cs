@@ -14,7 +14,7 @@ public class ClienteRepository : IClienteRepository
     public ClienteRepository(ControlePedidosContext context, IMapper mapper)
     {
         _context = context;
-        _mapper = _mapper;
+        _mapper = mapper;
     }
 
     public IEnumerable<Cliente> ObtemTodosClientes()

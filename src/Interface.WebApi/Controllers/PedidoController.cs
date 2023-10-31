@@ -1,5 +1,6 @@
 ﻿using Application.Dtos;
 using AutoMapper;
+using Core.Enums;
 using Core.Interfaces.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,7 +30,7 @@ public class PedidoController : ControllerBase
     }
 
     [HttpGet("{status}")]
-    public ActionResult<IEnumerable<PedidoDto>> GetPedidosPorStatus(short status)
+    public ActionResult<IEnumerable<PedidoDto>> GetPedidosPorStatus(StatusPedido status)
     {
         var pedidos = _pedidoService.ObtemPedidosPorStatus(status);
         if (!pedidos.Any()) 
