@@ -41,6 +41,7 @@ public class ProdutoRepository : IProdutoRepository
         var produtoInfra = _mapper.Map<DataModels.Produto>(produto);
         _context.Produtos.Add(produtoInfra);
         _context.SaveChanges();
+        _context.ChangeTracker.Clear();
         return _mapper.Map<Produto>(produtoInfra);
     }
 
@@ -53,6 +54,7 @@ public class ProdutoRepository : IProdutoRepository
         var produtoInfra = _mapper.Map<DataModels.Produto>(produto);
         _context.Entry(produtoInfra).State = EntityState.Modified;
         _context.SaveChanges();
+        _context.ChangeTracker.Clear();
     }
 
     public void RemoveProduto(Guid id)
@@ -64,5 +66,6 @@ public class ProdutoRepository : IProdutoRepository
         var produtoInfra = _mapper.Map<DataModels.Produto>(produtoContext);
         _context.Produtos.Remove(produtoInfra);
         _context.SaveChanges();
+        _context.ChangeTracker.Clear();
     }
 }

@@ -27,7 +27,8 @@ Aplicação feita em .Net utilizando Arquitetura Hexagonal.
 - GitHub: https://github.com/FelipeFabricio/fiap-controle-pedidos
 - Link da Aplicação Após os containers ativos: http://localhost:80/api/{recurso}
 - JSON do swagger em src/swagger.json
+- JSON do collection do Postman: src/API Restaurante.postman_collection.json
 
 ### Procedimento de execução:
-- via PS ou Console, Entrar na pasta src do repositório
+- via PS ou Console
 - executar docker compose up -d para subir os containers

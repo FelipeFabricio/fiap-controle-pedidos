@@ -34,28 +34,32 @@ public class ClienteRepository : IClienteRepository
         var clienteInfra = _mapper.Map<DataModels.Cliente>(cliente);
         _context.Clientes.Add(clienteInfra);
         _context.SaveChanges();
+        _context.ChangeTracker.Clear();
         return _mapper.Map<Cliente>(clienteInfra);
     }
 
     public void AtualizaCliente(Cliente cliente)
     {
-        var clienteContext = ObtemClientePorId(cliente.Id);
+        var clienteContext = _context.Clientes.AsNoTracking().FirstOrDefault(x => x.Id == cliente.Id);
         if (clienteContext == null)
             throw new Exception("Cliente não encontrado");
         
         var clienteInfra = _mapper.Map<DataModels.Cliente>(cliente);
         _context.Entry(clienteInfra).State = EntityState.Modified;
         _context.SaveChanges();
+        _context.ChangeTracker.Clear();
+
     }
 
     public void RemoveCliente(Guid id)
     {
-        var cliente = ObtemClientePorId(id);
+        var cliente = _context.Clientes.AsNoTracking().FirstOrDefault(x => x.Id == id);
         if (cliente == null)
             throw new Exception("Cliente não encontrado");
         
         var clienteInfra = _mapper.Map<DataModels.Cliente>(cliente);
         _context.Clientes.Remove(clienteInfra);
         _context.SaveChanges();
+        _context.ChangeTracker.Clear();
     }
 }
