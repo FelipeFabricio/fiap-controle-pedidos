@@ -19,6 +19,16 @@ public class ProdutoController : ControllerBase
         _mapper = mapper;
     }
 
+    [HttpGet("{id:guid}")]
+    public ActionResult<ProdutoDto> GetProduto(Guid id)
+    {
+        var produto = _produtoService.ObtemProdutoPorId(id);
+        if (produto is null)
+            return NotFound();
+        
+        return Ok(produto);
+    }
+    
     [HttpGet()]
     public ActionResult<IEnumerable<ProdutoDto>> GetProdutos()
     {
@@ -29,22 +39,21 @@ public class ProdutoController : ControllerBase
         return Ok(produtos);
     }
 
-    [HttpGet("{id:guid}")]
-    public ActionResult<ProdutoDto> GetProduto(Guid id)
+    [HttpGet("{categoria:int}")]
+    public ActionResult<IEnumerable<ProdutoDto>> GetProdutoPorCategoria(short categoria)
     {
-        var produto = _produtoService.ObtemProdutoPorId(id);
-        if (produto is null)
+        var produtos = _produtoService.ObtemProdutosPorCategoria(categoria);
+        if (produtos is null)
             return NotFound();
         
-        return Ok(produto);
+        return Ok(produtos);
     }
 
     [HttpPost]
     public ActionResult<ProdutoDto> CreateProduto([FromBody]ProdutoDto produto)
     {
-        var produtoDomain = _mapper.Map<Produto>(produto);
-        _produtoService.AdicionaProduto(produtoDomain);
-        return CreatedAtAction(nameof(GetProduto), new { id = produto.Id }, produto);
+        var produtoCadastrado = _produtoService.AdicionaProduto(_mapper.Map<Produto>(produto));
+        return Ok(_mapper.Map<ProdutoDto>(produtoCadastrado));
     }
 
     [HttpPut("{id:Guid}")]

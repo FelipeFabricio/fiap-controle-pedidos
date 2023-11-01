@@ -23,9 +23,9 @@ public class ClienteService : IClienteService
         return _clienteRepository.ObtemClientePorId(id);
     }
     
-    public void AdicionaCliente(Cliente cliente)
+    public Cliente AdicionaCliente(Cliente cliente)
     {
-        _clienteRepository.AdicionaCliente(cliente);
+        return _clienteRepository.AdicionaCliente(cliente);
     }
     
     public void AtualizaCliente(Cliente cliente)

@@ -19,21 +19,22 @@ public class ClienteRepository : IClienteRepository
 
     public IEnumerable<Cliente> ObtemTodosClientes()
     {
-        var clientes = _context.Clientes.AsEnumerable();
+        var clientes = _context.Clientes.AsNoTracking().AsEnumerable();
         return _mapper.Map<IEnumerable<Cliente>>(clientes);
     }
 
     public Cliente ObtemClientePorId(Guid id)
     {
-        var cliente = _context.Clientes.Find(id);
+        var cliente = _context.Clientes.AsNoTracking().FirstOrDefault(x => x.Id == id);
         return _mapper.Map<Cliente>(cliente);
     }
     
-    public void AdicionaCliente(Cliente cliente)
+    public Cliente AdicionaCliente(Cliente cliente)
     {
         var clienteInfra = _mapper.Map<DataModels.Cliente>(cliente);
         _context.Clientes.Add(clienteInfra);
         _context.SaveChanges();
+        return _mapper.Map<Cliente>(clienteInfra);
     }
 
     public void AtualizaCliente(Cliente cliente)

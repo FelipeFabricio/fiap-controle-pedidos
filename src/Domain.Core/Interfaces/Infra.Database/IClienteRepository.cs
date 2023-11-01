@@ -6,7 +6,7 @@ public interface IClienteRepository
 {
     Cliente ObtemClientePorId(Guid id);
     IEnumerable<Cliente> ObtemTodosClientes();
-    void AdicionaCliente(Cliente cliente);
+    Cliente AdicionaCliente(Cliente cliente);
     void AtualizaCliente(Cliente cliente);
     void RemoveCliente(Guid id);
 }

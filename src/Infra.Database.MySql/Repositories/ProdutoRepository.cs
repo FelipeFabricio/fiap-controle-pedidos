@@ -20,27 +20,28 @@ public class ProdutoRepository : IProdutoRepository
 
     public Produto ObtemProdutoPorId(Guid id)
     {   
-        var produto = _context.Produtos.Find(id);
+        var produto = _context.Produtos.AsNoTracking().FirstOrDefault(x => x.Id == id);
         return _mapper.Map<Produto>(produto);
     }
 
-    public Produto ObtemProdutoPorCategoria(CategoriaProduto categoria)
+    public IEnumerable<Produto> ObtemProdutosPorCategoria(short categoria)
     {
-        var produto = _context.Produtos.FirstOrDefault(p => p.Categoria == categoria);
-        return _mapper.Map<Produto>(produto);
+        var produtos = _context.Produtos.AsNoTracking().Where(p => p.Categoria == categoria);
+        return _mapper.Map<IEnumerable<Produto>>(produtos);
     }
 
     public IEnumerable<Produto> ObtemTodosProdutos()
     {
-        var produtos = _context.Produtos.AsEnumerable();
+        var produtos = _context.Produtos.AsNoTracking().AsEnumerable();
         return _mapper.Map<IEnumerable<Produto>>(produtos);
     }
 
-    public void AdicionaProduto(Produto produto)
+    public Produto AdicionaProduto(Produto produto)
     {
         var produtoInfra = _mapper.Map<DataModels.Produto>(produto);
         _context.Produtos.Add(produtoInfra);
         _context.SaveChanges();
+        return _mapper.Map<Produto>(produtoInfra);
     }
 
     public void AtualizaProduto(Produto produto)

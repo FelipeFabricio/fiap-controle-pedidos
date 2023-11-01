@@ -1,4 +1,6 @@
-﻿namespace Application.Dtos;
+﻿using Core.Enums;
+
+namespace Application.Dtos;
 
 public sealed record  ProdutoDto
 {
@@ -7,5 +9,5 @@ public sealed record  ProdutoDto
     public decimal Preco { get; set; }
     public string Descricao { get; set; }
     public string ImagemUrl { get; set; }
-    public string Categoria { get; set; }
+    public CategoriaProduto Categoria { get; set; }
 }

@@ -3,6 +3,7 @@ using Core.Entities;
 using Core.Enums;
 using Core.Interfaces.Infra.Database;
 using Infra.Database.MySql.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infra.Database.MySql.Repositories;
 
@@ -19,13 +20,13 @@ public class PedidoRepository : IPedidoRepository
 
     public IEnumerable<Pedido> ObtemPedidos()
     {
-        var pedidos = _context.Pedidos.AsEnumerable();
+        var pedidos = _context.Pedidos.AsNoTracking().AsEnumerable();
         return _mapper.Map<IEnumerable<Pedido>>(pedidos);
     }
 
     public IEnumerable<Pedido> ObtemPedidosPorStatus(StatusPedido statusPedido)
     {
-        var pedidos = _context.Pedidos.Where(p => p.Status == statusPedido).AsEnumerable();
+        var pedidos = _context.Pedidos.AsNoTracking().Where(p => p.Status == statusPedido).AsEnumerable();
         return _mapper.Map<IEnumerable<Pedido>>(pedidos);
     }
 }

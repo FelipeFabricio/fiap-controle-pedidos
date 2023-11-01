@@ -13,15 +13,15 @@ public class ProdutoService : IProdutoService
     {
         _produtoRepository = produtoRepository;
     }
-
+    
     public Produto ObtemProdutoPorId(Guid id)
     {
         return _produtoRepository.ObtemProdutoPorId(id);
     }
-
-    public Produto ObtemProdutoPorCategoria(CategoriaProduto categoria)
+    
+    public IEnumerable<Produto> ObtemProdutosPorCategoria(short categoria)
     {
-        return _produtoRepository.ObtemProdutoPorCategoria(categoria);
+        return _produtoRepository.ObtemProdutosPorCategoria(categoria);
     }
 
     public IEnumerable<Produto> ObtemTodosProdutos()
@@ -29,9 +29,9 @@ public class ProdutoService : IProdutoService
         return _produtoRepository.ObtemTodosProdutos();
     }
 
-    public void AdicionaProduto(Produto produto)
+    public Produto AdicionaProduto(Produto produto)
     {
-        _produtoRepository.AdicionaProduto(produto); 
+        return _produtoRepository.AdicionaProduto(produto); 
     }
 
     public void AtualizaProduto(Produto produto)

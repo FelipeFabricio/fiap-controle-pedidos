@@ -42,9 +42,8 @@ public class ClienteController : ControllerBase
     [HttpPost]
     public ActionResult<ClienteDto> CreateCliente([FromBody]ClienteDto cliente)
     {
-        var clienteDomain = _mapper.Map<Cliente>(cliente);
-        _clienteService.AdicionaCliente(clienteDomain);
-        return CreatedAtAction(nameof(GetCliente), new { id = cliente.Id }, cliente);
+        var clienteCadastrado = _clienteService.AdicionaCliente(_mapper.Map<Cliente>(cliente));
+        return Ok(_mapper.Map<ClienteDto>(clienteCadastrado));
     }
 
     [HttpPut("{id:Guid}")]

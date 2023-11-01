@@ -9,5 +9,5 @@ public sealed record  Produto
     public decimal Preco { get; set; }
     public string Descricao { get; set; }
     public string ImagemUrl { get; set; } = null!;
-    public CategoriaProduto Categoria { get; set; }
+    public short Categoria { get; set; }
 }
