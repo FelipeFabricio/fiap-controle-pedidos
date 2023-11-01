@@ -7,27 +7,6 @@
 	},
 	"item": [
 		{
-			"name": "Consulta Cliente",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:80/api/cliente/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "80",
-					"path": [
-						"api",
-						"cliente",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Cadastro Cliente",
 			"request": {
 				"method": "POST",
@@ -58,7 +37,28 @@
 			"response": []
 		},
 		{
-			"name": "Consulta um Cliente",
+			"name": "Consulta todos os Clientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:80/api/cliente/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"api",
+						"cliente",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta um Cliente por Id",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -79,7 +79,7 @@
 			"response": []
 		},
 		{
-			"name": "Alterar Cliente",
+			"name": "Alterar o Cliente",
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -172,34 +172,13 @@
 			"response": []
 		},
 		{
-			"name": "Consultar Produtos",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:80/api/produto/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "80",
-					"path": [
-						"api",
-						"produto",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Cadastrar Produto",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"nome\": \"teste\",\r\n  \"preco\": 10,\r\n  \"descricao\": \"etret\",\r\n  \"imagemUrl\": \"teste\",\r\n  \"categoria\": \"Bebidas\"\r\n}",
+					"raw": "{\r\n  \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"nome\": \"teste\",\r\n  \"preco\": 10,\r\n  \"descricao\": \"etret\",\r\n  \"imagemUrl\": \"teste\",\r\n  \"categoria\": 1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -223,7 +202,29 @@
 			"response": []
 		},
 		{
-			"name": "Consultar um produto",
+			"name": "Consultar todos os Produtos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:80/api/produto/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"api",
+						"produto",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		
+		{
+			"name": "Consultar um produto por Categoria",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -250,7 +251,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"nome\": \"teste 2\",\r\n  \"preco\": 10,\r\n  \"descricao\": \"etret\",\r\n  \"imagemUrl\": \"teste\",\r\n  \"categoria\": \"Bebidas\"\r\n}",
+					"raw": "{\r\n  \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"nome\": \"teste 2\",\r\n  \"preco\": 10,\r\n  \"descricao\": \"etret\",\r\n  \"imagemUrl\": \"teste\",\r\n  \"categoria\": 2\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
